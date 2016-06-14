@@ -32,6 +32,7 @@ import java.util.regex.Pattern;
  * 6. 判断是否联网
  * 7. 判断是否是wifi  3g等等
  * 8. SHA1加密算法
+ * 9. 验证身份证
  */
 public class OperatorUtil {
 
@@ -104,7 +105,7 @@ public class OperatorUtil {
      * @param String
      */
     public static boolean isPhoneNumber(String number) {
-        Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$");
+        Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0-9])|(17[0-9]))\\d{8}$");
         Matcher m = p.matcher(number);
         return m.matches();
     }
@@ -248,6 +249,14 @@ public class OperatorUtil {
         return result;
     }
 
+    /**
+     * 判断是否是身份证号
+     * @param str
+     */
+    public static boolean isIDcard(String str) {
+        String REGEX_ID_CARD = "(^\\d{15}$)|(^\\d{17}([0-9]|X)$)";
+        return Pattern.matches(REGEX_ID_CARD,str);
+    }
     /*
      * 打开扬声器
      * @param context
